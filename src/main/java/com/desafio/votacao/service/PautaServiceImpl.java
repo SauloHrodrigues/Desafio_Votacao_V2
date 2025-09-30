@@ -19,7 +19,8 @@ public class PautaServiceImpl implements PautaServiceI {
     @Override
     public PautaResponseDto cadastrar(PautaRequestDto dto) {
         validarSePautaExiste(dto.tema());
-        Pauta pautaSalva = repository.save(mapper.toEntity(dto));
+        Pauta p1 = mapper.toEntity(dto);
+        Pauta pautaSalva = repository.save(p1);
         return mapper.toResponse(pautaSalva);
     }
 
