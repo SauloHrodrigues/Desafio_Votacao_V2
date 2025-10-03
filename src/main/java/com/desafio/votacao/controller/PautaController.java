@@ -3,7 +3,7 @@ package com.desafio.votacao.controller;
 import com.desafio.votacao.controller.interfaces.PautaSwaggerDoc;
 import com.desafio.votacao.dtos.pauta.PautaRequestDto;
 import com.desafio.votacao.dtos.pauta.PautaResponseDto;
-import com.desafio.votacao.service.interfaces.PautaServiceI;
+import com.desafio.votacao.service.PautaServiceI;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

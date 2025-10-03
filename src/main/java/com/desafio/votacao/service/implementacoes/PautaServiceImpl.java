@@ -1,4 +1,4 @@
-package com.desafio.votacao.service;
+package com.desafio.votacao.service.implementacoes;
 
 import com.desafio.votacao.dtos.pauta.PautaRequestDto;
 import com.desafio.votacao.dtos.pauta.PautaResponseDto;
@@ -8,7 +8,7 @@ import com.desafio.votacao.mappers.PautaMapper;
 import com.desafio.votacao.models.Pauta;
 import com.desafio.votacao.models.Voto;
 import com.desafio.votacao.repository.PautaRepository;
-import com.desafio.votacao.service.interfaces.PautaServiceI;
+import com.desafio.votacao.service.PautaServiceI;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

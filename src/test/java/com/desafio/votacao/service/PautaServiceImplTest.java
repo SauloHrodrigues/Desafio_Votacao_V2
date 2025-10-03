@@ -5,6 +5,7 @@ import com.desafio.votacao.dtos.pauta.PautaResponseDto;
 import com.desafio.votacao.exceptions.pauta.PautaExistenteException;
 import com.desafio.votacao.models.Pauta;
 import com.desafio.votacao.repository.PautaRepository;
+import com.desafio.votacao.service.implementacoes.PautaServiceImpl;
 import java.util.ArrayList;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
@@ -12,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
