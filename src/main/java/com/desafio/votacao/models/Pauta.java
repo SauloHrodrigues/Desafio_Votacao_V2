@@ -31,7 +31,7 @@ public class Pauta {
     private String tema;
 
     @Column
-    @OneToMany(mappedBy = "pauta")
+    @OneToMany(mappedBy = "pauta", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Voto> votos = new ArrayList<>();
 

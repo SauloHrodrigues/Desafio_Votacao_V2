@@ -35,7 +35,7 @@ public class PautaServiceImpl implements PautaServiceI {
         }
     }
 
-    protected Pauta buscarPautaPorId(Long id){
+    public Pauta buscarPautaPorId(Long id){
         return repository.findById(id).orElseThrow(
                 ()-> new PautaInexistenteException("A pauta id: "+id+" não consta no banco.")
         );

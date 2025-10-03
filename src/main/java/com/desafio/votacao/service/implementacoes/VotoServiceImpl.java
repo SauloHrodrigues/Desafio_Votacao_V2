@@ -30,17 +30,15 @@ public class VotoServiceImpl implements VotoServiceI {
         return mapper.toResponse(votoSalvo);
     }
 
-    protected void validarSessaoAberta(Pauta pauta){
+    private void validarSessaoAberta(Pauta pauta){
         //TODO Implementar a sessão de votação
 
     }
 
-    protected void validarVotoDoAssociado(String cpf, Pauta pauta){
-        for(Voto voto: pauta.getVotos()){
-            if(cpf.equalsIgnoreCase(voto.getCpfDoAssociado())){
-                throw new VotoJaProferidoException("O associado CPF: "+cpf+" já votou na pauta, tema: "
-                +pauta.getTema().toUpperCase());
-            }
+    private void validarVotoDoAssociado(String cpf, Pauta pauta){
+        if (repository.existsByCpfAssociadoInPauta(cpf, pauta.getId())){
+            throw new VotoJaProferidoException("O associado CPF: "+cpf+" já votou na pauta, tema: "
+                    +pauta.getTema().toUpperCase());
         }
     }
 }
