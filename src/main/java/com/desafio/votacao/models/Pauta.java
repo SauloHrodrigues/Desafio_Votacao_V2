@@ -11,6 +11,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -35,4 +36,15 @@ public class Pauta {
     @JsonIgnore
     private List<Voto> votos = new ArrayList<>();
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Pauta pauta)) return false;
+        return Objects.equals(getId(), pauta.getId()) && Objects.equals(getTema(), pauta.getTema());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getTema());
+    }
 }

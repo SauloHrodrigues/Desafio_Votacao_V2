@@ -17,11 +17,13 @@ public class VotoServiceImpl implements VotoServiceI {
     private final VotoRepository repository;
 
     private final PautaServiceImpl pautaService;
+
+    private final  SessaoServiceImpl sessaoService;
     private VotoMapper mapper = VotoMapper.INSTANCE;
     @Override
     public VotoResponseDto receberVoto(VotoRequestDto novoVoto) {
         Pauta pauta = pautaService.buscarPautaPorId(novoVoto.idDaPauta());
-        validarSessaoAberta(pauta);
+        sessaoService.validaPautaEmVotacao(pauta);
         validarVotoDoAssociado(novoVoto.cpfDoAssociado(),pauta);
         Voto voto = mapper.toEntity(novoVoto);
         voto.setPauta(pauta);
@@ -30,10 +32,6 @@ public class VotoServiceImpl implements VotoServiceI {
         return mapper.toResponse(votoSalvo);
     }
 
-    private void validarSessaoAberta(Pauta pauta){
-        //TODO Implementar a sessão de votação
-
-    }
 
     private void validarVotoDoAssociado(String cpf, Pauta pauta){
         if (repository.existsByCpfAssociadoInPauta(cpf, pauta.getId())){

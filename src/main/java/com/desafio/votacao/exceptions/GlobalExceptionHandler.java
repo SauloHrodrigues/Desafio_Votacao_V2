@@ -2,6 +2,7 @@ package com.desafio.votacao.exceptions;
 
 import com.desafio.votacao.exceptions.pauta.PautaExistenteException;
 import com.desafio.votacao.exceptions.pauta.PautaInexistenteException;
+import com.desafio.votacao.exceptions.sessao.SessaoInexistenteException;
 import com.desafio.votacao.exceptions.voto.VotoJaProferidoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,11 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(PautaInexistenteException.class)
     public ResponseEntity<Object> hendlerPautaInexistenteException(PautaInexistenteException mensagem){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error:"+mensagem.getMessage());
+    }
+
+    @ExceptionHandler(SessaoInexistenteException.class)
+    public ResponseEntity<Object> hendlerSessaoInexistenteException(SessaoInexistenteException mensagem){
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error:"+mensagem.getMessage());
     }
 }

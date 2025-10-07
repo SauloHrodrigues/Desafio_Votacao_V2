@@ -2,7 +2,7 @@ package com.desafio.votacao.controller.interfaces;
 
 import com.desafio.votacao.dtos.sessao_votacao.NovaSessaoDto;
 import com.desafio.votacao.dtos.sessao_votacao.ResultadoVotacaoDto;
-import com.desafio.votacao.dtos.sessao_votacao.SessaoAbertaDto;
+import com.desafio.votacao.dtos.sessao_votacao.SessaoAbertaResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -19,9 +19,9 @@ public interface SessaoSwaggerDoc {
 
     @Operation(summary = "Abrir Sessão de votação")
     @ApiResponse(responseCode = "200", description = "Abrir a sessão de votação.",
-            content = @Content(schema = @Schema(implementation = SessaoAbertaDto.class)))
+            content = @Content(schema = @Schema(implementation = SessaoAbertaResponseDto.class)))
     @ApiResponse(responseCode = "404", description = "Pauta não encontrado.")
-    ResponseEntity<SessaoAbertaDto> abrirSessao(
+    ResponseEntity<SessaoAbertaResponseDto> abrirSessao(
             @Parameter(description = "ID da pauta.", example = "10")
             @PathVariable Long id,
             @Valid @RequestBody NovaSessaoDto novaSessao
