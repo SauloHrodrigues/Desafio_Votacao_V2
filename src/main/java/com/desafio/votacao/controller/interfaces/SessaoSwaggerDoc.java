@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@Tag(name = "Sessão para abrir votação", description = "Endpoints para abrir votação e devolver resultado.")
+@Tag(name = "Sessão de votação", description = "Endpoints para abrir uma sessão de votação e devolver resultado.")
 public interface SessaoSwaggerDoc {
 
     @Operation(summary = "Abrir Sessão de votação")

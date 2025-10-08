@@ -8,7 +8,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
-@Tag(name = "Pauta", description = "Endpoints para gestão para cadartrar uma nova pauta")
+@Tag(name = "Pauta", description = "Endpoints para cadartrar uma nova pauta")
 public interface PautaSwaggerDoc {
 
     @Operation(summary = "Cadastrar pauta")
