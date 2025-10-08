@@ -12,12 +12,14 @@ import java.time.LocalDateTime;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+
 @RequiredArgsConstructor
 @Service
 public class SessaoServiceImpl implements SessaoServiceI {
+
     private final PautaServiceImpl pautaService;
-    private Pauta pautaEmVotacao =null;
-    private Boolean sessaoAberta= false;
+    private Pauta pautaEmVotacao = null;
+    private Boolean sessaoAberta = false;
     private LocalDateTime inicioDaSessao;
     private LocalDateTime fimDaSessao;
 
@@ -37,8 +39,8 @@ public class SessaoServiceImpl implements SessaoServiceI {
         int sim = 0;
         int nao = 0;
 
-        for (Voto voto: pautaBuscada.getVotos()){
-            if(voto.getVoto().equals(VotoTipo.valueOf("SIM"))){
+        for (Voto voto : pautaBuscada.getVotos()) {
+            if (voto.getVoto().equals(VotoTipo.valueOf("SIM"))) {
                 sim++;
             } else {
                 nao++;
@@ -55,7 +57,7 @@ public class SessaoServiceImpl implements SessaoServiceI {
 
     }
 
-    private SessaoAbertaResponseDto respostaAberturaDePauta(Pauta pauta){
+    private SessaoAbertaResponseDto respostaAberturaDePauta(Pauta pauta) {
         return SessaoAbertaResponseDto.builder()
                 .id(pauta.getId())
                 .tema(pauta.getTema())
@@ -64,30 +66,29 @@ public class SessaoServiceImpl implements SessaoServiceI {
                 .build();
     }
 
-    private LocalDateTime calcularFimDaSessao(NovaSessaoDto dto){
-        if(dto.tempo() != 0){
-            System.out.println("diferente:");
+    private LocalDateTime calcularFimDaSessao(NovaSessaoDto dto) {
+        if (dto.tempo() != 0) {
             return inicioDaSessao.plusMinutes(dto.tempo());
-        }else {
+        } else {
             return inicioDaSessao.plusMinutes(2);
         }
     }
 
-    protected void validaPautaEmVotacao(Pauta pauta){
-        if (!sessaoAberta){
-           throw new SessaoInexistenteException("Não há sessão de votação aberta.");
+    protected void validaPautaEmVotacao(Pauta pauta) {
+        if (!sessaoAberta) {
+            throw new SessaoInexistenteException("Não há sessão de votação aberta.");
         }
 
         if (!pautaEmVotacao.equals(pauta)) {
-            throw new SessaoInexistenteException("A pauta: "+pauta.getTema().toUpperCase()+
+            throw new SessaoInexistenteException("A pauta: " + pauta.getTema().toUpperCase() +
                     " não esta em votação.");
         }
     }
 
     @Scheduled(fixedDelay = 5000)
-    private void agendamento(){
+    private void agendamento() {
         LocalDateTime agora = LocalDateTime.now();
-        if(sessaoAberta){
+        if (sessaoAberta) {
             if (agora.isAfter(fimDaSessao)) {
                 sessaoAberta = false;
             }
